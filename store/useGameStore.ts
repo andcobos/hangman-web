@@ -11,6 +11,9 @@ export const useGameStore = create<GameStore>((set) => ({
   gameState: 'menu',
   setGameState: (state) => set({ gameState: state }),
 
+  theme: 'dark',
+  setTheme: (theme) => set({ theme }),
+
   settings: defaultSettings,
   setSettings: (newSettings) => set((state) => ({ 
     settings: { ...state.settings, ...newSettings } 
@@ -47,6 +50,11 @@ export const useGameStore = create<GameStore>((set) => ({
     scores: { ...state.scores, [player]: state.scores[player] + points }
   })),
 
+  playerNames: { red: 'Jugador Rojo', blue: 'Jugador Azul' },
+  setPlayerNames: (redName, blueName) => set({
+    playerNames: { red: redName || 'Jugador Rojo', blue: blueName || 'Jugador Azul' }
+  }),
+
   resetGame: () => set({
     gameState: 'menu',
     settings: defaultSettings,
@@ -56,6 +64,7 @@ export const useGameStore = create<GameStore>((set) => ({
     hintsRemaining: 3,
     currentTurn: 'red',
     scores: { red: 0, blue: 0 },
+    playerNames: { red: 'Jugador Rojo', blue: 'Jugador Azul' },
   }),
 
   startNewRound: (wordInfo) => set((state) => ({
@@ -71,5 +80,17 @@ export const useGameStore = create<GameStore>((set) => ({
     guessedLetters: [],
     wrongGuesses: 0,
     hintsRemaining: state.settings.maxHints,
-  }))
+  })),
+
+  resetToMenu: () => set({
+    gameState: 'menu',
+    settings: defaultSettings,
+    currentWord: null,
+    guessedLetters: [],
+    wrongGuesses: 0,
+    hintsRemaining: 3,
+    currentTurn: 'red',
+    scores: { red: 0, blue: 0 },
+    playerNames: { red: 'Jugador Rojo', blue: 'Jugador Azul' },
+  }),
 }));

@@ -8,12 +8,12 @@ import { cn } from '@/lib/utils';
 import { Tag } from 'lucide-react';
 
 export const GameScreen = () => {
-  const { currentWord, guessedLetters, wrongGuesses, settings, currentTurn, scores } = useGameStore();
+  const { currentWord, guessedLetters, wrongGuesses, settings, currentTurn, scores, playerNames } = useGameStore();
   const { guess, isWinner, isLoser, maxErrors } = useHangmanLogic();
 
   if (!currentWord) return null;
 
-  const guesserName = currentTurn === 'red' ? 'Jugador Rojo' : 'Jugador Azul';
+  const guesserName = currentTurn === 'red' ? playerNames.red : playerNames.blue;
   const guesserColor = currentTurn === 'red' ? 'text-red-500' : 'text-blue-500';
 
   return (
@@ -45,8 +45,8 @@ export const GameScreen = () => {
           </span>
           {settings.mode === 'multiplayer' && (
             <div className="text-sm font-semibold flex gap-3 text-muted-foreground">
-              <span className="text-red-500 text-shadow-sm">Rojo: {scores.red}</span>
-              <span className="text-blue-500 text-shadow-sm">Azul: {scores.blue}</span>
+              <span className="text-red-500 text-shadow-sm truncate max-w-[100px]" title={playerNames.red}>{playerNames.red}: {scores.red}</span>
+              <span className="text-blue-500 text-shadow-sm truncate max-w-[100px]" title={playerNames.blue}>{playerNames.blue}: {scores.blue}</span>
             </div>
           )}
         </div>

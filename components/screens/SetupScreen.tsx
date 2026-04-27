@@ -5,21 +5,29 @@ import { useGameStore } from '@/store/useGameStore';
 import { cn } from '@/lib/utils';
 
 export const SetupScreen = () => {
-  const { setGameState, startNewRound, currentTurn } = useGameStore();
+  const { setGameState, startNewRound, currentTurn, scores, playerNames, setPlayerNames } = useGameStore();
   const [word, setWord] = useState('');
   const [category, setCategory] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  const [redName, setRedName] = useState(playerNames.red);
+  const [blueName, setBlueName] = useState(playerNames.blue);
+
+  const isFirstRound = scores.red === 0 && scores.blue === 0;
+
   const creatorTurn = currentTurn === 'red' ? 'blue' : 'red'; // Guess mode is currentTurn, creator is the OTHER one
-  // Actually, who enters the word? Let's say Player Rojo sets the word for Player Azul, so Azul guesses.
-  // Then Azul is the guesser (currentTurn = blue). Creator is red.
-  
   const creatorColor = creatorTurn === 'red' ? 'text-red-500' : 'text-blue-500';
-  const creatorName = creatorTurn === 'red' ? 'Jugador Rojo' : 'Jugador Azul';
+  const creatorName = creatorTurn === 'red' 
+    ? (isFirstRound && redName.trim() ? redName : playerNames.red) 
+    : (isFirstRound && blueName.trim() ? blueName : playerNames.blue);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!word.trim() || !category.trim()) return;
+    
+    if (isFirstRound) {
+      setPlayerNames(redName.trim(), blueName.trim());
+    }
     
     // Convert word to uppercase and remove extra spaces
     const cleanWord = word.trim().toUpperCase().replace(/\s+/g, ' ');
@@ -51,6 +59,33 @@ export const SetupScreen = () => {
       </div>
 
       <form onSubmit={handleSubmit} className="w-full space-y-6">
+        {isFirstRound && (
+          <div className="flex flex-col md:flex-row gap-4 mb-4">
+            <div className="space-y-2 flex-1">
+              <label className="text-sm font-bold pl-1 text-red-500">Nombre Jugador Rojo</label>
+              <input 
+                type="text"
+                value={redName}
+                onChange={(e) => setRedName(e.target.value)}
+                className="w-full p-4 bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent focus:border-red-500 rounded-2xl font-medium outline-none transition-all placeholder:text-zinc-400"
+                placeholder="Ej. Andrés"
+                maxLength={15}
+              />
+            </div>
+            <div className="space-y-2 flex-1">
+              <label className="text-sm font-bold pl-1 text-blue-500">Nombre Jugador Azul</label>
+              <input 
+                type="text"
+                value={blueName}
+                onChange={(e) => setBlueName(e.target.value)}
+                className="w-full p-4 bg-zinc-100 dark:bg-zinc-800/50 border-2 border-transparent focus:border-blue-500 rounded-2xl font-medium outline-none transition-all placeholder:text-zinc-400"
+                placeholder="Ej. Sofía"
+                maxLength={15}
+              />
+            </div>
+          </div>
+        )}
+
         <div className="space-y-2">
           <label className="text-sm font-bold pl-1">Palabra Secreta</label>
           <div className="relative">

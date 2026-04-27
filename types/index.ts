@@ -19,10 +19,16 @@ export interface WordInfo {
   category: string;
 }
 
+export type Theme = 'dark' | 'light' | 'modern' | 'retro';
+
 export interface GameStore {
   // Navigation & State
   gameState: GameState;
   setGameState: (state: GameState) => void;
+  
+  // Theme
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
   
   // Configuration
   settings: GameSettings;
@@ -46,9 +52,12 @@ export interface GameStore {
   toggleTurn: () => void;
   scores: PlayerScore;
   updateScore: (player: Turn, points: number) => void;
+  playerNames: { red: string; blue: string };
+  setPlayerNames: (redName: string, blueName: string) => void;
   
   // Actions
   resetGame: () => void;
   startNewRound: (wordInfo: WordInfo) => void;
   resetRound: () => void;
+  resetToMenu: () => void;
 }

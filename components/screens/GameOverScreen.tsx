@@ -5,7 +5,7 @@ import { RotateCcw, Home, Trophy, Frown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const GameOverScreen = () => {
-  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn } = useGameStore();
+  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn, playerNames } = useGameStore();
 
   if (!currentWord) return null;
 
@@ -26,7 +26,7 @@ export const GameOverScreen = () => {
     
   // If playing multiplayer, whoever won the round
   const winnerName = settings.mode === 'multiplayer' 
-    ? (currentTurn === 'red' ? 'Jugador Rojo' : 'Jugador Azul')
+    ? (currentTurn === 'red' ? playerNames.red : playerNames.blue)
     : '¡Ganaste!';
 
   return (

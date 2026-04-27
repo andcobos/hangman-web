@@ -5,10 +5,10 @@ import { cn } from '@/lib/utils';
 import { SmartphoneNfc } from 'lucide-react';
 
 export const TransitionScreen = () => {
-  const { setGameState, settings, currentTurn } = useGameStore();
+  const { setGameState, settings, currentTurn, playerNames } = useGameStore();
   const [phase, setPhase] = useState<'pass' | 'ready' | 'go'>('pass');
 
-  const guesserName = currentTurn === 'red' ? 'Jugador Rojo' : 'Jugador Azul';
+  const guesserName = currentTurn === 'red' ? playerNames.red : playerNames.blue;
   const guesserColor = currentTurn === 'red' ? 'text-red-500' : 'text-blue-500';
 
   useEffect(() => {
