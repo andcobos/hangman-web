@@ -61,20 +61,27 @@ export const VirtualKeyboard = ({ onGuess, guessedLetters, disabled, word }: Vir
               const isWrongGuess = isGuessed && !word.toUpperCase().includes(key);
               
               return (
-                <button
+                <motion.button
                   key={key}
                   disabled={isGuessed || disabled}
                   onClick={() => onGuess(key)}
+                  whileTap={!isGuessed && !disabled ? { scale: 0.9 } : undefined}
+                  animate={
+                    isCorrectGuess ? { scale: [1, 1.15, 1] } :
+                    isWrongGuess ? { x: [0, -4, 4, -4, 4, 0] } :
+                    { scale: 1, x: 0 }
+                  }
+                  transition={{ duration: 0.3 }}
                   className={cn(
-                    "h-12 flex-1 max-w-[40px] md:max-w-[48px] rounded-lg font-bold text-lg md:text-xl transition-all shadow-sm",
-                    "active:scale-95 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                    "h-12 flex-1 max-w-[40px] md:max-w-[48px] rounded-lg font-bold text-lg md:text-xl transition-colors shadow-sm",
+                    "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                     isCorrectGuess ? "bg-green-500 text-white shadow-none" : "",
                     isWrongGuess ? "bg-zinc-300 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-600 shadow-none opacity-50" : "",
                     !isGuessed ? "bg-background text-foreground hover:bg-zinc-100 dark:hover:bg-zinc-800 border border-border" : ""
                   )}
                 >
                   {key}
-                </button>
+                </motion.button>
               );
             })}
           </div>
