@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 
 export const useHangmanLogic = () => {
   const {
@@ -13,7 +13,7 @@ export const useHangmanLogic = () => {
     updateScore,
     currentTurn,
     toggleTurn,
-  } = useGameStore();
+  } = useHangmanStore();
 
   const maxErrors = settings.difficulty === 'easy' ? 4 : settings.difficulty === 'medium' ? 6 : 8;
 

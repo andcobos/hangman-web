@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
-import { useHangmanLogic } from '@/hooks/useHangmanLogic';
-import { useGameStore } from '@/store/useGameStore';
-import { HangmanDrawing } from '@/components/game/HangmanDrawing';
-import { WordDisplay } from '@/components/game/WordDisplay';
-import { VirtualKeyboard } from '@/components/game/VirtualKeyboard';
+import { useHangmanLogic } from '@/components/hangman/hooks/useHangmanLogic';
+import { useHangmanStore } from '@/store/useHangmanStore';
+import { HangmanDrawing } from '@/components/hangman/ui/HangmanDrawing';
+import { WordDisplay } from '@/components/hangman/ui/WordDisplay';
+import { VirtualKeyboard } from '@/components/hangman/ui/VirtualKeyboard';
 import { cn } from '@/lib/utils';
 import { Tag } from 'lucide-react';
 
 export const GameScreen = () => {
-  const { currentWord, guessedLetters, wrongGuesses, settings, currentTurn, scores, playerNames } = useGameStore();
+  const { currentWord, guessedLetters, wrongGuesses, settings, currentTurn, scores, playerNames } = useHangmanStore();
   const { guess, isWinner, isLoser, maxErrors } = useHangmanLogic();
 
   if (!currentWord) return null;

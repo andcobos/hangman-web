@@ -7,7 +7,7 @@ const defaultSettings: GameSettings = {
   maxHints: 3,
 };
 
-export const useGameStore = create<GameStore>((set) => ({
+export const useHangmanStore = create<GameStore>((set) => ({
   gameState: 'menu',
   setGameState: (state) => set({ gameState: state }),
 

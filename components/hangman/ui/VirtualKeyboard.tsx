@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 import { cn } from '@/lib/utils'; // I will create a simple utils.ts for cn
 
 interface VirtualKeyboardProps {
@@ -17,7 +17,7 @@ const KEYS = [
 ];
 
 export const VirtualKeyboard = ({ onGuess, guessedLetters, disabled, word }: VirtualKeyboardProps) => {
-  const { hintsRemaining, useHint } = useGameStore();
+  const { hintsRemaining, useHint } = useHangmanStore();
 
   const handleHint = () => {
     if (hintsRemaining <= 0 || disabled) return;

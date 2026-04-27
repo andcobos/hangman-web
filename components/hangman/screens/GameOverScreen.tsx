@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 import { getRandomWord } from '@/lib/mockWords';
 import { RotateCcw, Home, Trophy, Frown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const GameOverScreen = () => {
-  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn, playerNames } = useGameStore();
+  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn, playerNames } = useHangmanStore();
 
   if (!currentWord) return null;
 

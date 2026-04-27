@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 import { cn } from '@/lib/utils';
 import { SmartphoneNfc } from 'lucide-react';
 
 export const TransitionScreen = () => {
-  const { setGameState, settings, currentTurn, playerNames } = useGameStore();
+  const { setGameState, settings, currentTurn, playerNames } = useHangmanStore();
   const [phase, setPhase] = useState<'pass' | 'ready' | 'go'>('pass');
 
   const guesserName = currentTurn === 'red' ? playerNames.red : playerNames.blue;

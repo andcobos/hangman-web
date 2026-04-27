@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Gamepad2, Eye, EyeOff } from 'lucide-react';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 import { cn } from '@/lib/utils';
 
 export const SetupScreen = () => {
-  const { setGameState, startNewRound, currentTurn, scores, playerNames, setPlayerNames } = useGameStore();
+  const { setGameState, startNewRound, currentTurn, scores, playerNames, setPlayerNames } = useHangmanStore();
   const [word, setWord] = useState('');
   const [category, setCategory] = useState('');
   const [showPassword, setShowPassword] = useState(false);

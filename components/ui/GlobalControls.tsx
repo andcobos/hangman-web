@@ -1,18 +1,27 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Home, Palette } from 'lucide-react';
-import { useGameStore } from '@/store/useGameStore';
+import Link from 'next/link';
 import { Theme } from '@/types';
 
 const THEMES: Theme[] = ['dark', 'light', 'modern', 'retro'];
 
 export const GlobalControls = () => {
-  const { resetToMenu, theme, setTheme } = useGameStore();
+  const [theme, setTheme] = useState<Theme>('dark');
+
+  // Load theme on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('game-theme') as Theme;
+    if (savedTheme && THEMES.includes(savedTheme)) {
+      setTheme(savedTheme);
+    }
+  }, []);
 
   useEffect(() => {
     const html = document.documentElement;
     html.className = theme; // This overrides all previous theme classes
+    localStorage.setItem('game-theme', theme);
   }, [theme]);
 
   const cycleTheme = () => {
@@ -37,13 +46,13 @@ export const GlobalControls = () => {
       </button>
 
       {/* Home / Reset Button */}
-      <button
-        onClick={resetToMenu}
+      <Link
+        href="/"
         className="p-3 bg-destructive hover:bg-red-500 text-white rounded-full hover:scale-110 active:scale-95 transition-all shadow-md flex items-center justify-center"
-        title="Volver al Menú"
+        title="Volver al Hub"
       >
         <Home size={20} />
-      </button>
+      </Link>
     </div>
   );
 };

@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
 import { Play, Users } from 'lucide-react';
-import { useGameStore } from '@/store/useGameStore';
+import { useHangmanStore } from '@/store/useHangmanStore';
 import { getRandomWord } from '@/lib/mockWords';
 
 export const MainMenu = () => {
-  const { setGameState, setSettings, startNewRound } = useGameStore();
+  const { setGameState, setSettings, startNewRound } = useHangmanStore();
 
   const handleSolo = () => {
     setSettings({ mode: 'solo' });
