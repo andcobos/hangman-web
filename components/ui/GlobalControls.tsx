@@ -9,9 +9,11 @@ const THEMES: Theme[] = ['dark', 'light', 'modern', 'retro'];
 
 interface GlobalControlsProps {
   className?: string;
+  onHomeClick?: (e: React.MouseEvent) => void;
+  hideHome?: boolean;
 }
 
-export const GlobalControls = ({ className }: GlobalControlsProps) => {
+export const GlobalControls = ({ className, onHomeClick, hideHome }: GlobalControlsProps) => {
   const [theme, setTheme] = useState<Theme>('dark');
 
   // Load theme on mount
@@ -50,13 +52,16 @@ export const GlobalControls = ({ className }: GlobalControlsProps) => {
       </button>
 
       {/* Home / Reset Button */}
-      <Link
-        href="/"
-        className="p-3 bg-background border-2 border-border rounded-full hover:scale-110 active:scale-95 transition-all text-foreground shadow-md flex items-center justify-center"
-        title="Volver al Hub"
-      >
-        <Home size={20} />
-      </Link>
+      {!hideHome && (
+        <Link
+          href="/"
+          onClick={onHomeClick}
+          className="p-3 bg-background border-2 border-border rounded-full hover:scale-110 active:scale-95 transition-all text-foreground shadow-md flex items-center justify-center"
+          title="Volver al Hub"
+        >
+          <Home size={20} />
+        </Link>
+      )}
     </div>
   );
 };
