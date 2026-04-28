@@ -8,6 +8,8 @@
     --muted: #27272a;
     --muted-foreground: #a1a1aa;
     --card: #18181b;
+    --primary: #ededed;
+    --primary-foreground: #0a0a0a;
   }
 
   .light {
@@ -17,6 +19,8 @@
     --muted: #f4f4f5;
     --muted-foreground: #71717a;
     --card: #ffffff;
+    --primary: #171717;
+    --primary-foreground: #ffffff;
   }
 
   .modern {
@@ -26,6 +30,8 @@
     --muted: #1e293b;
     --muted-foreground: #94a3b8;
     --card: #0f172a;
+    --primary: #3b82f6; /* blue-500 */
+    --primary-foreground: #ffffff;
   }
 
   .retro {
@@ -35,6 +41,8 @@
     --muted: #e8dfc7;
     --muted-foreground: #9e8d76;
     --card: #f4ecd8;
+    --primary: #5c4d3c;
+    --primary-foreground: #f4ecd8;
   }
 }
 
@@ -45,6 +53,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }

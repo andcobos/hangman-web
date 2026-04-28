@@ -52,7 +52,7 @@ export const GlobalControls = ({ className }: GlobalControlsProps) => {
       {/* Home / Reset Button */}
       <Link
         href="/"
-        className="p-3 bg-destructive hover:bg-red-500 text-white rounded-full hover:scale-110 active:scale-95 transition-all shadow-md flex items-center justify-center"
+        className="p-3 bg-background border-2 border-border rounded-full hover:scale-110 active:scale-95 transition-all text-foreground shadow-md flex items-center justify-center"
         title="Volver al Hub"
       >
         <Home size={20} />

@@ -17,7 +17,7 @@ export const GameScreen = () => {
   const guesserColor = currentTurn === 'red' ? 'text-red-500' : 'text-blue-500';
 
   return (
-    <motion.div 
+    <motion.div
       className="flex flex-col items-center w-full max-w-4xl mx-auto p-4 md:p-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -32,10 +32,10 @@ export const GameScreen = () => {
             </span>
           )}
           <span className="text-sm text-muted-foreground font-medium flex items-center gap-1">
-            <Tag size={14} /> {currentWord.category}
+            <Tag size={14} /> <b>Categoría:</b> {currentWord.category}
           </span>
         </div>
-        
+
         <div className="flex flex-col items-end">
           <span className={cn(
             "font-bold text-lg transition-colors",
@@ -56,17 +56,17 @@ export const GameScreen = () => {
         <HangmanDrawing wrongGuesses={wrongGuesses} difficulty={settings.difficulty} />
       </div>
 
-      <WordDisplay 
-        word={currentWord.word} 
-        guessedLetters={guessedLetters} 
-        isGameOver={isWinner || isLoser} 
+      <WordDisplay
+        word={currentWord.word}
+        guessedLetters={guessedLetters}
+        isGameOver={isWinner || isLoser}
       />
 
       <div className="w-full mt-4">
-        <VirtualKeyboard 
-          onGuess={guess} 
-          guessedLetters={guessedLetters} 
-          disabled={isWinner || isLoser} 
+        <VirtualKeyboard
+          onGuess={guess}
+          guessedLetters={guessedLetters}
+          disabled={isWinner || isLoser}
           word={currentWord.word}
         />
       </div>

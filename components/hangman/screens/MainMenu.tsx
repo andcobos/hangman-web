@@ -43,7 +43,7 @@ export const MainMenu = () => {
         
         <button
           onClick={handleMultiplayer}
-          className="flex items-center justify-center gap-3 w-full bg-white dark:bg-zinc-800 text-foreground border-2 border-border font-semibold py-4 px-6 rounded-2xl hover:scale-105 transition-transform active:scale-95 shadow-lg"
+          className="flex items-center justify-center gap-3 w-full bg-primary text-primary-foreground border-2 border-transparent font-semibold py-4 px-6 rounded-2xl hover:scale-105 transition-transform active:scale-95 shadow-lg"
         >
           <Users size={24} />
           Multijugador Local
