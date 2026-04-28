@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Gamepad2, ArrowRight } from 'lucide-react';
 import { GlobalControls } from '@/components/ui/GlobalControls';
 
@@ -20,8 +21,14 @@ export default function GameSpotLobby() {
         <Link href="/hangman" className="group relative block w-full h-full">
           <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
           <div className="relative h-full flex flex-col bg-card border border-border/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-            <div className="h-48 bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center border-b border-border/50">
-              <Gamepad2 className="w-24 h-24 text-pink-500 opacity-80 group-hover:scale-110 transition-transform duration-500" />
+            <div className="relative h-48 bg-neutral-900 flex items-center justify-center border-b border-border/50 overflow-hidden">
+              <Image 
+                src="/hangman_cover.png"
+                alt="Portada del juego Ahorcado"
+                width={600}
+                height={300}
+                className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+              />
             </div>
             <div className="p-6 flex-1 flex flex-col justify-between">
               <div>
