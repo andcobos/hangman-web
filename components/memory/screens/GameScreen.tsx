@@ -21,12 +21,14 @@ export function GameScreen() {
           </div>
         ) : (
           <>
-            <div className={`flex-1 text-center py-2 rounded-xl transition-colors ${currentPlayer === 1 ? 'bg-primary/20 text-primary font-bold' : 'text-muted-foreground'}`}>
-              J1: {player1Score}
+            <div className={`flex-1 flex flex-col items-center justify-center py-2 px-2 sm:px-4 rounded-xl border-2 transition-all duration-300 ${currentPlayer === 1 ? 'bg-blue-500/20 border-blue-500 text-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.3)] scale-105' : 'bg-transparent border-transparent text-muted-foreground opacity-50 grayscale'}`}>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider font-bold mb-1">Jugador Azul</span>
+              <span className="text-2xl sm:text-3xl font-black leading-none">{player1Score}</span>
             </div>
-            <div className="mx-4 text-muted-foreground font-bold">VS</div>
-            <div className={`flex-1 text-center py-2 rounded-xl transition-colors ${currentPlayer === 2 ? 'bg-primary/20 text-primary font-bold' : 'text-muted-foreground'}`}>
-              J2: {player2Score}
+            <div className="mx-2 sm:mx-4 text-muted-foreground font-black text-lg sm:text-xl opacity-50">VS</div>
+            <div className={`flex-1 flex flex-col items-center justify-center py-2 px-2 sm:px-4 rounded-xl border-2 transition-all duration-300 ${currentPlayer === 2 ? 'bg-red-500/20 border-red-500 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.3)] scale-105' : 'bg-transparent border-transparent text-muted-foreground opacity-50 grayscale'}`}>
+              <span className="text-[10px] sm:text-xs uppercase tracking-wider font-bold mb-1">Jugador Rojo</span>
+              <span className="text-2xl sm:text-3xl font-black leading-none">{player2Score}</span>
             </div>
           </>
         )}
@@ -44,8 +46,8 @@ export function GameScreen() {
           </motion.div>
         )}
         {status === 'PLAYING' && mode === 'MULTI' && (
-          <div className="text-muted-foreground font-medium">
-            Turno de: <span className="text-primary font-bold">Jugador {currentPlayer}</span>
+          <div className="text-muted-foreground font-medium flex items-center gap-2">
+            Turno de: <span className={`font-bold px-3 py-1 rounded-full transition-colors ${currentPlayer === 1 ? 'bg-blue-500/20 text-blue-500' : 'bg-red-500/20 text-red-500'}`}>Jugador {currentPlayer === 1 ? 'Azul' : 'Rojo'}</span>
           </div>
         )}
       </div>

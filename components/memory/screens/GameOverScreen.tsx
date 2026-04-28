@@ -8,8 +8,8 @@ export function GameOverScreen() {
 
   const getWinnerText = () => {
     if (mode === 'SOLO') return '¡Completado!';
-    if (player1Score > player2Score) return '¡Jugador 1 Gana!';
-    if (player2Score > player1Score) return '¡Jugador 2 Gana!';
+    if (player1Score > player2Score) return '¡Jugador Azul Gana!';
+    if (player2Score > player1Score) return '¡Jugador Rojo Gana!';
     return '¡Empate!';
   };
 
@@ -40,13 +40,13 @@ export function GameOverScreen() {
           </div>
         ) : (
           <div className="space-y-4">
-            <div className={`flex justify-between items-center text-xl font-bold ${player1Score > player2Score ? 'text-primary' : 'text-muted-foreground'}`}>
-              <span>Jugador 1</span>
+            <div className={`flex justify-between items-center text-xl font-bold ${player1Score > player2Score ? 'text-blue-500' : 'text-muted-foreground'}`}>
+              <span>Jugador Azul</span>
               <span>{player1Score} pts</span>
             </div>
             <div className="h-px bg-border/50 w-full" />
-            <div className={`flex justify-between items-center text-xl font-bold ${player2Score > player1Score ? 'text-primary' : 'text-muted-foreground'}`}>
-              <span>Jugador 2</span>
+            <div className={`flex justify-between items-center text-xl font-bold ${player2Score > player1Score ? 'text-red-500' : 'text-muted-foreground'}`}>
+              <span>Jugador Rojo</span>
               <span>{player2Score} pts</span>
             </div>
           </div>

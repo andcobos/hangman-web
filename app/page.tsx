@@ -53,10 +53,14 @@ export default function GameSpotLobby() {
           <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
           <div className="relative h-full flex flex-col bg-card border border-border/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div className="relative h-48 bg-neutral-900 flex items-center justify-center border-b border-border/50 overflow-hidden">
-              <div className="w-full h-full bg-gradient-to-br from-indigo-900 to-slate-900 flex items-center justify-center relative group-hover:scale-105 transition-transform duration-500">
-                <Gamepad2 className="w-24 h-24 text-indigo-400 opacity-80" />
-                <div className="absolute inset-0 bg-blue-500/10 mix-blend-overlay"></div>
-              </div>
+              <Image
+                src="/memory.png"
+                alt="Portada del juego Memory Match"
+                width={600}
+                height={300}
+                priority
+                className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
+              />
             </div>
             <div className="p-6 flex-1 flex flex-col justify-between">
               <div>
