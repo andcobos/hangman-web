@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import { Gamepad2, ArrowRight } from 'lucide-react';
+import { GlobalControls } from '@/components/ui/GlobalControls';
 
 export default function GameSpotLobby() {
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center py-16 px-4 sm:px-8 font-sans">
+      <GlobalControls />
       <div className="max-w-4xl w-full text-center space-y-6 mb-16">
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-pulse">
           Game Spot

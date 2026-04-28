@@ -7,7 +7,11 @@ import { Theme } from '@/types';
 
 const THEMES: Theme[] = ['dark', 'light', 'modern', 'retro'];
 
-export const GlobalControls = () => {
+interface GlobalControlsProps {
+  className?: string;
+}
+
+export const GlobalControls = ({ className }: GlobalControlsProps) => {
   const [theme, setTheme] = useState<Theme>('dark');
 
   // Load theme on mount
@@ -31,7 +35,7 @@ export const GlobalControls = () => {
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50 flex items-center gap-3">
+    <div className={className || "fixed top-4 right-4 z-50 flex items-center gap-3"}>
       {/* Theme Toggle Button */}
       <button
         onClick={cycleTheme}
