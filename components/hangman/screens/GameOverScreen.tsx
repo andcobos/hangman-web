@@ -5,29 +5,41 @@ import { RotateCcw, Home, Trophy, Frown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 export const GameOverScreen = () => {
-  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn, playerNames } = useHangmanStore();
+  const { currentWord, guessedLetters, settings, resetGame, startNewRound, setGameState, toggleTurn, currentTurn, playerNames, updateScore, resetRound, setCurrentWord } = useHangmanStore();
 
   if (!currentWord) return null;
 
-  const isWinner = currentWord.word.split('').every((letter) => guessedLetters.includes(letter) || letter === ' ');
+  const isWinner = currentWord.word.toUpperCase().split('').every((letter) => guessedLetters.includes(letter) || letter === ' ');
 
   const handlePlayAgain = () => {
     if (settings.mode === 'solo') {
       startNewRound(getRandomWord());
     } else {
+      if (isWinner) {
+        updateScore(currentTurn, 1);
+      } else {
+        const otherPlayer = currentTurn === 'red' ? 'blue' : 'red';
+        updateScore(otherPlayer, 1);
+      }
       toggleTurn();
+      resetRound();
+      setCurrentWord(null);
       setGameState('setup');
     }
   };
 
-  const winTextColor = settings.mode === 'solo' 
-    ? "text-green-500" 
-    : currentTurn === 'red' ? "text-red-500" : "text-blue-500";
-    
-  // If playing multiplayer, whoever won the round
-  const winnerName = settings.mode === 'multiplayer' 
-    ? (currentTurn === 'red' ? playerNames.red : playerNames.blue)
-    : '¡Ganaste!';
+  const creatorTurn = currentTurn === 'red' ? 'blue' : 'red';
+  const roundWinner = isWinner ? currentTurn : creatorTurn;
+  const roundWinnerName = roundWinner === 'red' ? playerNames.red : playerNames.blue;
+  const roundWinnerColor = roundWinner === 'red' ? "text-red-500" : "text-blue-500";
+
+  const titleText = settings.mode === 'multiplayer'
+    ? `¡${roundWinnerName} Gana!`
+    : isWinner ? '¡Has Ganado!' : '¡Fin del Juego!';
+
+  const titleColor = settings.mode === 'multiplayer'
+    ? roundWinnerColor
+    : isWinner ? "text-green-500" : "text-red-500";
 
   return (
     <motion.div 
@@ -51,8 +63,8 @@ export const GameOverScreen = () => {
         </motion.div>
       </div>
 
-      <h1 className={cn("text-5xl font-black mb-4", isWinner ? winTextColor : "text-red-500")}>
-        {isWinner ? (settings.mode === 'multiplayer' ? `¡${winnerName} Gana!` : '¡Has Ganado!') : '¡Fin del Juego!'}
+      <h1 className={cn("text-5xl font-black mb-4", titleColor)}>
+        {titleText}
       </h1>
 
       <div className="space-y-2 mb-12">

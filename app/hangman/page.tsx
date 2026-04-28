@@ -37,10 +37,10 @@ export default function Home() {
       <AnimatePresence mode="wait">
         <motion.div
           key={gameState}
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: -50, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
           className="w-full flex justify-center items-center flex-1"
         >
           {gameState === 'menu' && <MainMenu />}

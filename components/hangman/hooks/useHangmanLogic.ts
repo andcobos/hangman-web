@@ -10,7 +10,6 @@ export const useHangmanLogic = () => {
     addGuessedLetter,
     incrementWrongGuesses,
     setGameState,
-    updateScore,
     currentTurn,
     toggleTurn,
   } = useHangmanStore();
@@ -18,24 +17,16 @@ export const useHangmanLogic = () => {
   const maxErrors = settings.difficulty === 'easy' ? 4 : settings.difficulty === 'medium' ? 6 : 8;
 
   const isWinner = currentWord &&
-    currentWord.word.split('').every((letter) => guessedLetters.includes(letter) || letter === ' ');
+    currentWord.word.toUpperCase().split('').every((letter) => guessedLetters.includes(letter) || letter === ' ');
 
   const isLoser = wrongGuesses >= maxErrors;
 
   useEffect(() => {
-    if (isWinner) {
-      if (settings.mode === 'multiplayer') {
-         updateScore(currentTurn, 1);
-      }
-      setTimeout(() => setGameState('gameover'), 800);
-    } else if (isLoser) {
-      if (settings.mode === 'multiplayer') {
-         const otherPlayer = currentTurn === 'red' ? 'blue' : 'red';
-         updateScore(otherPlayer, 1);
-      }
-      setTimeout(() => setGameState('gameover'), 800);
+    if (isWinner || isLoser) {
+      const timer = setTimeout(() => setGameState('gameover'), 800);
+      return () => clearTimeout(timer);
     }
-  }, [isWinner, isLoser, setGameState, settings.mode, currentTurn, updateScore]);
+  }, [isWinner, isLoser, setGameState]);
 
   const guess = useCallback((letter: string) => {
     const uppercaseLetter = letter.toUpperCase();
