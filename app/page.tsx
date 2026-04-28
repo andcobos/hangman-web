@@ -22,11 +22,12 @@ export default function GameSpotLobby() {
           <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-purple-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-500 group-hover:duration-200"></div>
           <div className="relative h-full flex flex-col bg-card border border-border/50 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
             <div className="relative h-48 bg-neutral-900 flex items-center justify-center border-b border-border/50 overflow-hidden">
-              <Image 
+              <Image
                 src="/hangman_cover.png"
                 alt="Portada del juego Ahorcado"
                 width={600}
                 height={300}
+                priority
                 className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -46,7 +47,7 @@ export default function GameSpotLobby() {
             </div>
           </div>
         </Link>
-        
+
         {/* Espacio para futuros juegos */}
         <div className="h-full flex flex-col bg-card/50 border border-dashed border-border/50 rounded-2xl items-center justify-center p-8 text-center min-h-[350px]">
           <div className="w-16 h-16 rounded-full bg-muted/50 flex items-center justify-center mb-4">
