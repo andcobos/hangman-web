@@ -3,6 +3,33 @@ import Image from 'next/image';
 import { Gamepad2, ArrowRight, Edit3 } from 'lucide-react';
 import { GlobalControls } from '@/components/ui/GlobalControls';
 
+const COMING_SOON_GAMES = [
+  {
+    id: 'batalla-naval',
+    title: 'Batalla Naval',
+    description: 'Hunde la flota de tu oponente antes de que él hunda la tuya. Clásico juego de estrategia por turnos.',
+    icon: Gamepad2,
+    colorFrom: 'from-blue-500',
+    colorTo: 'to-cyan-500',
+  },
+  {
+    id: 'uno-online',
+    title: 'Uno Online',
+    description: 'El juego de cartas favorito de todos. Deshazte de tus cartas antes que tus amigos.',
+    icon: Gamepad2,
+    colorFrom: 'from-red-500',
+    colorTo: 'to-orange-500',
+  },
+  {
+    id: 'trivia-master',
+    title: 'Trivia Master',
+    description: 'Demuestra cuánto sabes en diferentes categorías en este desafío de preguntas y respuestas.',
+    icon: Gamepad2,
+    colorFrom: 'from-purple-500',
+    colorTo: 'to-pink-500',
+  }
+];
+
 export default function GameSpotLobby() {
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center py-16 px-4 sm:px-8 font-sans">
@@ -109,6 +136,44 @@ export default function GameSpotLobby() {
             </div>
           </div>
         </Link>
+
+        {/* Tarjetas de Próximamente */}
+        {COMING_SOON_GAMES.map((game) => (
+          <div key={game.id} className="group relative block w-full h-full cursor-not-allowed">
+            {/* Efecto de borde deshabilitado */}
+            <div className="absolute -inset-0.5 bg-neutral-800 rounded-2xl opacity-50"></div>
+            <div className="relative h-full flex flex-col bg-card/80 border border-border/30 rounded-2xl overflow-hidden opacity-60">
+              
+              {/* Badge Superior */}
+              <div className="absolute top-4 right-4 z-20">
+                <span className="px-3 py-1 text-xs font-black tracking-wider text-white bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 rounded-full shadow-lg">
+                  PRÓXIMAMENTE
+                </span>
+              </div>
+
+              {/* Contenido visual difuminado */}
+              <div className="relative h-48 bg-neutral-900/50 flex items-center justify-center border-b border-border/20 overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-br ${game.colorFrom} ${game.colorTo} opacity-10 blur-xl`}></div>
+                <game.icon className="w-24 h-24 text-neutral-600 blur-sm relative z-10" />
+              </div>
+              
+              <div className="p-6 flex-1 flex flex-col justify-between blur-[1px]">
+                <div>
+                  <h3 className="text-2xl font-bold text-card-foreground/70 mb-2 flex items-center gap-2">
+                    {game.title}
+                  </h3>
+                  <p className="text-muted-foreground/70">
+                    {game.description}
+                  </p>
+                </div>
+                <div className="mt-6 flex items-center text-neutral-500 font-semibold">
+                  En desarrollo
+                  <Edit3 className="w-5 h-5 ml-2" />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </main>
   );
