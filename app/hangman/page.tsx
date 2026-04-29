@@ -9,6 +9,7 @@ import { GameOverScreen } from '@/components/hangman/screens/GameOverScreen';
 import { AnimatePresence, motion } from 'framer-motion';
 import { RotateCcw } from 'lucide-react';
 import { GlobalControls } from '@/components/ui/GlobalControls';
+import { GameInfoModal } from '@/components/ui/GameInfoModal';
 
 export default function Home() {
   const { gameState, resetToMenu } = useHangmanStore();
@@ -17,7 +18,18 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center font-sans overflow-hidden pt-24 pb-8 relative">
       {/* Header Fijo */}
       <header className="fixed top-0 left-0 w-full h-16 bg-background/90 backdrop-blur-sm z-50 px-4 sm:px-6 flex items-center justify-between border-b border-border shadow-sm">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-widest text-primary uppercase">Hangman</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-widest text-primary uppercase">Hangman</h1>
+          <GameInfoModal 
+            title="Instrucciones: Ahorcado" 
+            rules={[
+              "Adivina la palabra oculta antes de que se dibuje el muñeco.",
+              "Selecciona una letra a la vez.",
+              "Si fallas, pierdes un intento.",
+              "Ganas si descubres la palabra antes de quedarte sin vidas."
+            ]} 
+          />
+        </div>
         
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Botón de Reinicio Local en el Header */}

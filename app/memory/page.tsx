@@ -8,6 +8,7 @@ import { SetupScreen } from '@/components/memory/screens/SetupScreen';
 import { GameScreen } from '@/components/memory/screens/GameScreen';
 import { GameOverScreen } from '@/components/memory/screens/GameOverScreen';
 import { RotateCcw } from 'lucide-react';
+import { GameInfoModal } from '@/components/ui/GameInfoModal';
 
 export default function MemoryMatchPage() {
   const { status, resetGame } = useMemoryStore();
@@ -19,7 +20,18 @@ export default function MemoryMatchPage() {
     <main className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center font-sans overflow-hidden pt-24 pb-8 relative">
       {/* Header Fijo */}
       <header className="fixed top-0 left-0 w-full h-16 bg-background/90 backdrop-blur-sm z-50 px-4 sm:px-6 flex items-center justify-between border-b border-border shadow-sm">
-        <h1 className="text-xl sm:text-2xl font-bold tracking-widest text-primary uppercase">Memory Match</h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-xl sm:text-2xl font-bold tracking-widest text-primary uppercase">Memory Match</h1>
+          <GameInfoModal 
+            title="Instrucciones: Memoria" 
+            rules={[
+              "Encuentra todos los pares de cartas idénticas.",
+              "En cada turno, voltea exactamente dos cartas.",
+              "Si coinciden, se quedan boca arriba.",
+              "Limpia el tablero en la menor cantidad de movimientos posibles."
+            ]} 
+          />
+        </div>
         
         <div className="flex items-center gap-2 sm:gap-3">
           {status !== 'SETUP' && (

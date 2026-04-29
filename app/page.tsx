@@ -126,7 +126,7 @@ export default function GameSpotLobby() {
                   Bachillerato Stop
                 </h3>
                 <p className="text-muted-foreground">
-                  El clásico juego de palabras multijugador. Crea una sala, invita a tus amigos y demuestra quién es el más rápido completando categorías.
+                  Demuestra tu agilidad mental y vocabulario llenando todas las categorías antes de que alguien grite ¡Stop!
                 </p>
               </div>
               <div className="mt-6 flex items-center text-emerald-500 font-semibold group-hover:text-emerald-400 transition-colors">
