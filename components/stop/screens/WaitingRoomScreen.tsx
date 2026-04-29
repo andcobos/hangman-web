@@ -49,7 +49,7 @@ export function WaitingRoomScreen() {
               <li key={player.id} className="p-4 flex items-center justify-between hover:bg-muted/50 transition-colors">
                 <span className="font-medium text-lg text-foreground flex items-center gap-2">
                   {player.name}
-                  {player.isHost && <Crown className="w-4 h-4 text-yellow-500" title="Host" />}
+                  {player.isHost && <Crown className="w-4 h-4 text-yellow-500" />}
                 </span>
                 <span className="text-xs font-bold px-2 py-1 bg-muted rounded text-muted-foreground uppercase tracking-wider">
                   {player.isHost ? 'Host' : 'Jugador'}
