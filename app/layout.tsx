@@ -13,13 +13,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Game Spot | Minijuegos Multijugador en Tiempo Real",
+  metadataBase: new URL("https://gamio-gs.vercel.app"), // <-- ESTA ES LA LÍNEA QUE FALTABA
+  title: "Gamio - Game Spot | Minijuegos Multijugador en Tiempo Real",
   description: "¡Reta a tus amigos en Bachillerato Stop, Ahorcado y más! La mejor plataforma de juegos web multijugador con sincronización en tiempo real.",
   icons: {
     icon: "/vercel.svg",
   },
   openGraph: {
-    title: "Game Spot | Minijuegos Multijugador en Tiempo Real",
+    title: "Gamio - Game Spot | Minijuegos Multijugador en Tiempo Real",
     description: "¡Reta a tus amigos en Bachillerato Stop, Ahorcado y más! La mejor plataforma de juegos web multijugador con sincronización en tiempo real.",
     url: "https://gamio-gs.vercel.app",
     siteName: "Gamio - Game Spot",
